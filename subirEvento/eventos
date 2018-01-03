@@ -1,0 +1,30 @@
+</table>
+	<input type="file" name="foto" />
+	<br/>
+	<input type="submit" value="Upload"/>
+	</form>
+<table border="2px">
+	<tr>
+		<td>ID</td>
+		<td>Nombre</td>
+		<td>Precio</td>
+		<td>Imagen</td>
+		<td>Acciones</td>
+	</tr>
+	<?php
+		include 'Datos/conexion.php';
+		$re=mysql_query("select * from productos")or die(mysql_error());
+		while ($f=mysql_fetch_array($re)) {
+	?>
+	<tr>
+		<td><?php echo $f['idProducto'];?></td>
+		<td><?php echo $f['Nombre'];?></td>
+		<td><?php echo $f['Precio'];?></td>
+		<td><?php echo "<img class=\"imagen\" src=\""."Imagenes/".$f['Imagen']."\"/>";?></td>
+		<td><?php echo '<a href="Acciones/eliminar.php?eliminar='.$f['idProducto'].'">Eliminar producto</a>';?>
+		<?php echo '<a href="editar.php?editar='.$f['idProducto'].'">Editar</a>';?></td>
+	</tr>
+	<?php
+	}
+	?>
+	</table>	
